@@ -36,14 +36,13 @@
 
         return n;
       }
-      const nums = [5, 2, 3, 1];
-      //   // 有序
-      //   const nums = Mock.mock("@range(4000)");
-      //   // 无序
-      //   const newNums = _.shuffle(nums);
-      console.time("冒泡排序");
-      sortArray(nums);
-      console.timeEnd("冒泡排序");
+      // 有序
+      const nums = Mock.mock("@range(40000)");
+      // 无序
+      const newNums = _.shuffle(nums);
+      console.time("冒泡排序4万条数据");
+      sortArray(newNums);
+      console.timeEnd("冒泡排序4万条数据");
     </script>
   </body>
 </html>

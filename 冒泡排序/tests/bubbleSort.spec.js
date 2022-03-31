@@ -33,9 +33,9 @@ describe("冒泡排序", () => {
     expect(bubbleSort(nums)).toEqual([0, 0, 1, 1, 2, 5]);
   });
 
-  test("大数据", () => {
+  test("40000条数据", () => {
     // 有序
-    const nums = Mock.mock('@range(4000)')
+    const nums = Mock.mock('@range(40000)')
     // 无序
     const newNums = _.shuffle(nums)
     expect(bubbleSort(newNums)).toEqual(nums);
