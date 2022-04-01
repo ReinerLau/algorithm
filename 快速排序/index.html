@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>快速排序</title>
+    <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+  </head>
+  <body>
+    <script>
+      // 快速排序
+      function quickSort(array, start = 0, end = array.length - 1) {
+        // 递归出口
+        if (end - start < 1) {
+          return array;
+        }
+        // 分界点位置
+        let pivotIndex = partition(array, start, end);
+        // 递归处理左边比分界点小的元素
+        quickSort(array, start, pivotIndex - 1);
+        // 递归处理左边比分界点大的元素
+        quickSort(array, pivotIndex + 1, end);
+        return array;
+      }
+
+      function partition(array, start, end) {
+        let j = start;
+        // 找到分界点元素
+        let pivot = array[end];
+        for (let i = start; i <= end; i++) {
+          // 比分界点小，往数组前面进行交换
+          if (array[i] <= pivot) {
+            let temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            j++;
+            /// 也可以使用ES6的解构赋值进行交换
+          }
+        }
+        // 分界点位置
+        return j - 1;
+      }
+
+      // 有序
+      const nums = Mock.mock("@range(40000)");
+      // 无序
+      const newNums = _.shuffle(nums);
+      console.time("快速排序4万条数据");
+      quickSort(newNums);
+      console.timeEnd("快速排序4万条数据");
+    </script>
+  </body>
+</html>
